@@ -8,7 +8,6 @@ A terminal-based implementation of the classic board game **Mancala** built usin
 3. [How to Play](#how-to-play)
 4. [Installation](#installation)
 5. [Project Structure](#project-structure)
-6. [Code Description](#code-description)
 7. [Contributing](#contributing)
 8. [License](#license)
 
@@ -53,3 +52,15 @@ To start the game, run the mancala.py file:
     ├── terminal_board_print.py # Responsible for printing the game board
     └── README.md               # Project documentation
     ```
+
+## Contributing
+Contributions to improve the game are welcome! If you'd like to contribute, please follow these steps:
+1. Fork the repository.
+2. Create a new branch (git checkout -b feature-branch).
+3. Make your changes.
+4. Commit your changes (git commit -am 'Add new feature').
+5. Push to the branch (git push origin feature-branch).
+6. Create a pull request to merge your changes into the main branch.
+
+## License
+This project is licensed under the MIT License.
