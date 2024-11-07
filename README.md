@@ -8,6 +8,7 @@ A terminal-based implementation of the classic board game **Mancala** built usin
 3. [How to Play](#how-to-play)
 4. [Installation](#installation)
 5. [Project Structure](#project-structure)
+6. [Key Code Highlights](#key-code-highlights)
 7. [Contributing](#contributing)
 8. [License](#license)
 
@@ -52,6 +53,16 @@ To start the game, run the mancala.py file:
     ├── terminal_board_print.py # Responsible for printing the game board
     └── README.md               # Project documentation
     ```
+
+## Key Code Highlights:
+- **Object-Oriented Design**: 
+  - The `Player` class encapsulates all player-specific data, like their pits and store, which makes the game modular and easier to maintain.
+  - The `Mancala` class orchestrates the gameplay, with clear methods for turn execution and winner detection.
+  - 
+- **Terminal I/O**: 
+  - The game uses the terminal for both input and output, with clear and concise prompts for player actions, such as selecting a pit to "sow" seeds from.
+  - The board is printed in an easy-to-read format after each move, providing a visual representation of the game state.
+
 
 ## Contributing
 Contributions to improve the game are welcome! If you'd like to contribute, please follow these steps:
