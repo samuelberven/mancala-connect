@@ -4,15 +4,28 @@ from mancala_player import Player
 
 class Mancala:
     """
-    Represents Mancala game as played. Includes board (as a list), dictionary of Player objects, and methods for
-    creating players, printing the board, checking if the game is over (and if it is, what the outcome is),
-    generating the string to be used for play,
-    and for using that string (after manipulation) to update Player data members
+    Represents a Mancala game, including the game board, player objects, and key game methods. 
+
+    Methods include:
+    - Creating players
+    - Printing the board
+    - Checking if the game is over and determining the outcome
+    - Generating and updating game state from user input
     """
     def __init__(self):
+        """
+        TODO: right better docstring
+        """
         self._players = {}
-        self.create_player(input("Please enter Player 1's name: "), "Player 1", 0)
-        self.create_player(input("Please enter Player 2's name: "), "Player 2", 7)
+
+        # User input for Player 1's name        
+        p1_proposed_name = self.validate_name(1)
+        self.create_player(p1_proposed_name, "Player 1", 0)
+
+        # User input for Player 2's name        
+        p2_proposed_name = self.validate_name(2)
+        self.create_player(p2_proposed_name, "Player 2", 7)
+
 
         self._board = self._players["Player 1"].get_pits_and_store() + self._players["Player 2"].get_pits_and_store()
         play_string = self.get_players()["Player 1"].get_pits_and_store() + self.get_players()[
@@ -25,12 +38,6 @@ class Mancala:
             display_board(play_string, self._players["Player 1"].get_name(), self._players["Player 2"].get_name())    
             self.execute_turn(current_player, play_string)
 
-    def get_players(self):
-        """
-        Returns dictionary of Players
-        """
-        return self._players
-
     # TODO add in "offset" code explanation 
     def create_player(self, player_name, player_pos, offset):
         """
@@ -38,6 +45,21 @@ class Mancala:
         """
         self._players[player_pos] = Player(player_name, offset)
         return self._players[player_pos]        
+
+    def validate_name(self, player_num):
+        while True:
+            player_name = input(f"Please enter player {player_num}'s name (max 8 characters): ")
+ 
+            if len(player_name) >= 8:
+                print("Please enter a name with 8 or fewer characters: ")
+            else:
+                return player_name
+
+    def get_players(self):
+        """
+        Returns dictionary of Players
+        """
+        return self._players
 
     def execute_turn(self, current_player, play_string):
         """

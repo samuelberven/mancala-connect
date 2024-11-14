@@ -41,7 +41,7 @@ The game logic is implemented through a set of classes and methods, allowing the
 ## Run the Game
 To start the game, run the mancala.py file:
     ```bash
-    python mancala.py
+    python3 mancala.py
     ```
 
 ## Project Structure
