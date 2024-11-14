@@ -1,0 +1,76 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+
+# Virtual environments
+.env/
+env/
+venv/
+*/venv/
+
+# IDE/editor-specific files
+.vscode/
+.idea/
+*.iml
+
+# Flask environment files (contains sensitive data like API keys)
+.flaskenv
+.env
+
+# Pytest coverage
+.coverage
+*.coveragerc
+nosetests.xml
+coverage.xml
+*.hypothesis/
+
+# Docker-related files (if any)
+*.log
+docker-compose.override.yml
+
+# macOS-specific files
+.DS_Store
+
+# Windows-specific files
+Thumbs.db
+
+# Ignore the Docker image, container, and other build artifacts
+docker-image-name/
+
+# Ignore files for any sensitive data (like credentials or secrets)
+*.env
+
+# Vue
+# Node.js dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+public/
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE/editor configuration
+.idea/
+.vscode/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Backup files
+*.bak
+
+# Other misc files
+*.log

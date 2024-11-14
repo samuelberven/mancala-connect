@@ -75,3 +75,19 @@ Contributions to improve the game are welcome! If you'd like to contribute, plea
 
 ## License
 This project is licensed under the MIT License.
+
+
+# Docker for game_logic
+1. Build the Docker image:
+  ```bash
+  docker build -t mancala-game .
+  ```
+2. Run the Docker container interactively:
+  ```bash
+  docker run -it mancala-game
+  ```
+
+# To run all three docker files (from project root):
+  ```bash
+  docker-compose up --build
+  ```
