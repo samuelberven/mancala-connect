@@ -74,3 +74,6 @@ yarn-error.log*
 
 # Other misc files
 *.log
+
+# My own notes
+DEV_NOTES.md

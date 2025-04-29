@@ -1,25 +1,16 @@
-# Use Python as the base image
 FROM python:3.10-slim
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy only the requirements file first to leverage Docker cache
-COPY requirements.txt /app/
+# Install build dependencies, install requirements, then remove build dependencies
+COPY requirements.txt .
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc python3-dev && \
+    pip install --no-cache-dir -r requirements.txt && \
+    apt-get remove -y gcc python3-dev && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
 
-# Create and activate a virtual environment
-RUN python -m venv /env
-ENV PATH="/env/bin:$PATH"
+COPY . .
 
-# Install backend dependencies (Flask, gunicorn, etc.)
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
-
-# Copy the rest of the backend code into the container
-COPY . /app/
-
-# Expose the port that the Flask app will run on
-EXPOSE 5000
-
-# Set the default command to run the Flask app using gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000", "--reload"]

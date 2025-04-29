@@ -1,45 +1,46 @@
-version: '3.8'
-
+# docker-compose.yml
 services:
   backend:
     build:
-      context: ./backend  # Path to backend directory containing the Dockerfile
-      dockerfile: Dockerfile  # Path to Dockerfile, adjust if the filename is different
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
-      - "5000:5000"  # Expose the backend API on port 5000
+      - "5002:5000"
     volumes:
-      - ./backend:/app  # Mount backend source code into the container for live-reloading
+      - ./backend:/app
+    # Sends output straight to the terminal, so logs are immediately visible (which is useful for debugging)
     environment:
-      - FLASK_ENV=development  # Development environment for Flask
+      - PYTHONUNBUFFERED=1
     depends_on:
-      - game_logic  # Make sure game logic is up first
+      - game_logic
     networks:
       - mancala-network
 
   game_logic:
-    build: ./game_logic  # Path to game logic directory containing its Dockerfile
+    build: ./game_logic
     volumes:
-      - ./game_logic:/app  # Mount game logic source code for live-reloading
-    command: python game_terminal.py  # Command to run game logic, adjust if necessary
+      - ./game_logic:/app
+    command: python game_terminal.py
     ports:
-      - "5001:5000"  # Expose game logic service on a different port (5001)
+      - "5001:5000"
     networks:
       - mancala-network
 
-  frontend:
-    build:
-      context: ./frontend  # Path to frontend directory containing its Dockerfile
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"  # Expose Vue app on port 8080
-    volumes:
-      - ./frontend:/app  # Mount frontend source code for live-reloading
-    environment:
-      - NODE_ENV=development  # Development environment for Vue.js
-    depends_on:
-      - backend  # Make sure backend is up before frontend starts
-    networks:
-      - mancala-network
+  # frontend service commented out as before
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #     - ./frontend:/app
+  #   environment:
+  #     - NODE_ENV=development
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - mancala-network
 
 networks:
   mancala-network:
