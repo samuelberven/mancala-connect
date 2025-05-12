@@ -1,8 +1,8 @@
 import sys
-from backend.app.terminal_board_print import print_board as display_board
-from backend.app.mancala_player import Player
+from terminal_board_print import print_board as display_board
+from mancala_player import Player
 
-class Mancala:
+class Mancala_Game:
     """
     Represents a Mancala game, including the game board, player objects, and key game methods. 
 
@@ -164,3 +164,10 @@ class Mancala:
                 print(f'Winner is Player 2: {self._players["Player 2"].get_name()}')
             self.finished = True
             sys.exit()
+
+
+def main():
+    game = Mancala()
+
+if __name__ == "__main__":
+    main()
