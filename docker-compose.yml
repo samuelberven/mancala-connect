@@ -12,56 +12,30 @@ services:
     environment:
       - PYTHONUNBUFFERED=1  # Ensures logs are immediately flushed
     restart: always
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; r=requests.get('http://localhost:8080/health'); exit(0) if r.status_code == 200 else exit(1)"]
+      interval: 10s
+      retries: 3
+    networks:
+      - mancala-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"  # Matches the configured Vue port for dev mode
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules 
+    env_file:
+      - frontend/.env
+    depends_on:
+      backend:
+        condition: service_healthy
     networks:
       - mancala-network
 
 networks:
   mancala-network:
     driver: bridge
-
-
-# services:
-#   backend:
-#     build:
-#       context: backend
-#       dockerfile: Dockerfile
-#     volumes:
-#       - ./backend:/app 
-#     ports:
-#       - "8080:8080"
-#     env_file:
-#       - backend/.env
-#     restart: always
-
-# services:
-#   backend:
-#     build:
-#       context: ./backend
-#       dockerfile: Dockerfile
-#     ports:
-#       - "8080:8080"
-#     volumes:
-#       - ./backend:/app
-#     environment:
-#       - PYTHONUNBUFFERED=1
-#     networks:
-#       - mancala-network
-
-#   # frontend:
-#   #   build:
-#   #     context: ./frontend
-#   #     dockerfile: Dockerfile
-#   #   ports:
-#   #     - "8080:8080"
-#   #   volumes:
-#   #     - ./frontend:/app
-#   #   environment:
-#   #     - NODE_ENV=development
-#   #   depends_on:
-#   #     - backend
-#   #   networks:
-#   #     - mancala-network
-
-# networks:
-#   mancala-network:
-#     driver: bridge
