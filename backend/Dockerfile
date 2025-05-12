@@ -20,13 +20,20 @@ RUN apt-get update && \
     apt-get remove -y gcc python3-dev && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
+# USER root
+# RUN apt-get update && \
+#     apt-get install -y --no-install-recommends gcc python3-dev && \
+#     pip install --no-cache-dir -r requirements.txt && \
+#     apt-get remove -y gcc python3-dev && \
+#     apt-get autoremove -y && \
+#     rm -rf /var/lib/apt/lists/*
 
 # Switch back to the application user
 USER appuser
 COPY . .
 
 # Run the FastAPI server with Uvicorn
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]
 
 
 # FROM python:3.10-slim

@@ -3,11 +3,35 @@ services:
     build:
       context: backend
       dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app  # Mount backend for live code updates
     ports:
       - "8080:8080"
     env_file:
-      - backend/.env
+      - backend/.env  # Removed "backend/" since context is already backend
+    environment:
+      - PYTHONUNBUFFERED=1  # Ensures logs are immediately flushed
     restart: always
+    networks:
+      - mancala-network
+
+networks:
+  mancala-network:
+    driver: bridge
+
+
+# services:
+#   backend:
+#     build:
+#       context: backend
+#       dockerfile: Dockerfile
+#     volumes:
+#       - ./backend:/app 
+#     ports:
+#       - "8080:8080"
+#     env_file:
+#       - backend/.env
+#     restart: always
 
 # services:
 #   backend:

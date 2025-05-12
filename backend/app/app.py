@@ -2,7 +2,8 @@
 # from fastapi.middleware.cors import CORSMiddleware
 # from backend.app.models import GameState
 
-# app = FastAPI(title="Mancala API", description="A basic API for Mancala game state manipulation.")
+# app = FastAPI(title="Mancala API", \
+# description="A basic API for Mancala game state manipulation.")
 
 # # Enable CORS (optional, useful when connecting from a browser-based frontend)
 # app.add_middleware(
@@ -38,11 +39,12 @@
 #     Todo: integrate your move logic from CLI app instead of this stub
 #     """
 #     if pit_index < 1 or pit_index > 6:
-#         raise HTTPException(status_code=400, detail="Pit index must be between 1 and 6")
-    
+#         raise HTTPException(
+# status_code=400, detail="Pit index must be between 1 and 6")
+
 #     # TODO: Replace this with the CLI app-derived move logic.
 #     game_state.current_player = (
 #         "Player 2" if game_state.current_player == "Player 1" else "Player 1"
 #     )
-    
+
 #     return game_state
