@@ -1,5 +1,6 @@
 # ToDo:
 ## High Priority
+- Set up basic endpoints
 - Set up flake8
 - Add Flake8 to GitHub Actions workflow (as .github/workflows/lint.yml)
 - Rewrite pytests
