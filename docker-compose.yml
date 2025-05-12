@@ -1,32 +1,17 @@
-# docker-compose.yml
 services:
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "5002:5000"
+      - "8080:8080"
     volumes:
       - ./backend:/app
-    # Sends output straight to the terminal, so logs are immediately visible (which is useful for debugging)
     environment:
       - PYTHONUNBUFFERED=1
-    depends_on:
-      - game_logic
     networks:
       - mancala-network
 
-  game_logic:
-    build: ./game_logic
-    volumes:
-      - ./game_logic:/app
-    command: python game_terminal.py
-    ports:
-      - "5001:5000"
-    networks:
-      - mancala-network
-
-  # frontend service commented out as before
   # frontend:
   #   build:
   #     context: ./frontend

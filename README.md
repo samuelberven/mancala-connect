@@ -47,6 +47,11 @@ The project is now evolving into a **full-stack web application**, leveraging cu
 - **🔗 Multiplayer:** Implementing **WebSockets** for real-time online play.  
 - **📦 Containerization:** Using **Docker** to streamline deployment and scalability.  
 
+### 🔧 **Cloud Deployment**
+The cloud stack is currently under consideration. Options include:
+- **Backend**: Container (AWS ECS/Fargate or Google Cloud Run) or serverless functions (AWS Lambda, Azure Functions, or Google Cloud Functions)
+- **Frontend**: Azure Static Web Apps or Amplify
+
 ### 📈 **Impact**  
 This transformation enhances the game's **accessibility, scalability, and interactivity**, while also allowing me to deepen my expertise in **modern web development, API design, and real-time communication**.  
 
