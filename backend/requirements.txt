@@ -1,5 +1,12 @@
 fastapi==0.104.0
 uvicorn==0.24.0
-pydantic==1.10.13  # Older version for compatibility with FastAPI (doesn't use Rust)
+pydantic==2.6.4  # Future-proofed but may require FastAPI updates
 pytest==6.2.4
-flake8==3.9.2
+flake8==7.2.0  # Latest version (supports Python 3.13 better)
+
+# fastapi==0.104.0
+# uvicorn==0.24.0
+# # pydantic==2.6.4  # Ensuring stable compatibility
+# pydantic==1.10.13  # Older version for compatibility with FastAPI (doesn't use Rust)
+# pytest==6.2.4
+# flake8==3.9.2

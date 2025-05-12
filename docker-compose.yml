@@ -1,32 +1,43 @@
 services:
   backend:
     build:
-      context: ./backend
+      context: backend
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    volumes:
-      - ./backend:/app
-    environment:
-      - PYTHONUNBUFFERED=1
-    networks:
-      - mancala-network
+    env_file:
+      - backend/.env
+    restart: always
 
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "8080:8080"
-  #   volumes:
-  #     - ./frontend:/app
-  #   environment:
-  #     - NODE_ENV=development
-  #   depends_on:
-  #     - backend
-  #   networks:
-  #     - mancala-network
+# services:
+#   backend:
+#     build:
+#       context: ./backend
+#       dockerfile: Dockerfile
+#     ports:
+#       - "8080:8080"
+#     volumes:
+#       - ./backend:/app
+#     environment:
+#       - PYTHONUNBUFFERED=1
+#     networks:
+#       - mancala-network
 
-networks:
-  mancala-network:
-    driver: bridge
+#   # frontend:
+#   #   build:
+#   #     context: ./frontend
+#   #     dockerfile: Dockerfile
+#   #   ports:
+#   #     - "8080:8080"
+#   #   volumes:
+#   #     - ./frontend:/app
+#   #   environment:
+#   #     - NODE_ENV=development
+#   #   depends_on:
+#   #     - backend
+#   #   networks:
+#   #     - mancala-network
+
+# networks:
+#   mancala-network:
+#     driver: bridge
