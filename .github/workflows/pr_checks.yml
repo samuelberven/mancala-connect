@@ -1,6 +1,8 @@
 name: Pull Request Checks
 
 on:
+  push:
+    branches: [ main, production, dev ]  # Triggers on direct pushes to these branches
   pull_request:
     branches: [ main, production, dev ]  # Require checks on these branches
 
