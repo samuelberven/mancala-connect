@@ -2,6 +2,10 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
+# Create a non-root user and set ownership of the working directory
+RUN adduser --disabled-password appuser && chown -R appuser /app
+USER appuser
+
 # Install build dependencies, install requirements, then remove build dependencies
 COPY requirements.txt .
 RUN apt-get update && \
@@ -13,4 +17,6 @@ RUN apt-get update && \
 
 COPY . .
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000", "--reload"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]
+
+
